@@ -1,17 +1,20 @@
 package com.gree.www.util;
 
-import com.gree.www.dao.HelloWorld;
+import com.gree.www.entity.User;
+import com.gree.www.service.TestService;
+import com.gree.www.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringTest {
 
-    public static void main(String args[]){
+    public static void main(String args[])throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring.xml");
-        HelloWorld helloWorld = (HelloWorld) context.getBean("helloWorld");
-        helloWorld.setMessage("message_set");
-        helloWorld.printMessage();
+        UserService userService = (UserService) context.getBean("userService");
+        User user = userService.selectUser(1);
+        System.out.println(user.toString());
+//        TestService testService = (TestService) context.getBean("testService");
+//        testService.test();
     }
-
 }
 
